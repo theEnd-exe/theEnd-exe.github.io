@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+    <title>DHG Monopoly 2022</title>
+    <meta name="description" content="DHG Monopoly 2022" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div class="topnav">
+        <div class="topnavItem">
+            <a href="/index.html" download="2022_Abitur_Monopoly.html"><button id="homeButtton">Download Page</button></a>
+        </div>
+    </div>
+    <div class="contentwrapper">
+        <div class="contentbox" onclick="setRandomText()">
+            <img class="questionmark" alt="?"> 
+            <div class="overlay">Neues Ereignis</div>
+        </div>
+    </div>
+
+    
+    <div class="contentwrapper2">
+        <div class="contentbox2">
+            <h1>Gezogene Ereigniskarte:</h1>
+        </div>
+        <div class="contentbox2">        
+            <h3>
+                <a id="RandomText"></a>
+            </h3>
+        </div>
+    </div>
+
+    <br>
+
+    <script >
+        var r_text = new Array (); 
+        r_text[0] = "Du kommst 10 Minuten zu spät bei einem Deutschlehrer mit Brille. Dein Gewissen verlangt von dir, dem Förderverein 200DM zu spenden."; 
+        r_text[1] = "Du schaust deine Ethiklehrerin falsch an. Sie erklärt dir 5 Minuten lang, warum sie so keinen Unterricht führen wird. Du setzt 1 Runde aus."; 
+        r_text[2] = "Du hast heute Chemie bei einem leger gekleideten Chemielehrer. Du bist eine Frau. Begib dich sofort in den Trainingsraum. Ziehe nicht über „Schulstart“, ziehe kein Notengeld ein."; 
+        r_text[3] = "Ein weiser Mathe-und Physiklehrer erklärt dir, warum Altruismus eine der Grundsäulen der Gesellschaft ist. Du bist überzeugt und schenkst dem Mitspieler mit dem wenigsten Bargeld 1000DM."; 
+        r_text[4] = "Ein verschrobener Kunstlehrer macht heute Theorieunterricht. Für dich fühlt sich ein Tag wie zwei an. Gehe zurück zum „Schulstart“, ziehe kein Notengeld ein.";
+        r_text[5] = "Ein gut frisierter Geschichtslehrer verliert einen seiner Schlüssel. Du hebst ihn auf und stellst fest, dass es der Schlüssel zum Trainingsraum ist. Bewahre ihn auf, bis du ihn gebrauchen kannst oder verkaufe ihn."
+        r_text[6] = "Deine Geschichtslehrerin ist in Elternzeit. Für dich heißt das: Heute kein Geschichte und du überspringst den restlichen Schultag. Gehe zu „Schulstart“ und ziehe Notengeld ein."
+        r_text[7] = "Deine leicht zerstreute Biolehrerin beschließt nach kurzem Überlegen, den Unterricht heute frühzeitig zu beenden. Ziehe vor zum „Platz der Alten Synagoge“."
+        r_text[8] = "Du bist ein reiches Kind aus Herdern. Daher steckt dir Papa 500DM zu für befriedigende Zensuren in „Naturphänomene“."
+        r_text[9] = "Es ist Zeit für Taschengeld. Du bekommst 500DM."
+        r_text[10] = "Deine pietistische Englischlehrerin gibt dir 220DM, um für den Kurs Eis beim Frischemarkt Danner zu kaufen. Heimlich behältst du das Rückgeld von 200DM."
+        r_text[11] = "Dein linker Sitznachbar lässt dich bei der Physikklausur abschreiben. Aus Dankbarkeit gibst du ihm 300DM."
+        r_text[12] = "Dein Französischlehrer hat heute ein besonderes Auge auf dich geworfen. Er stellt deine mündliche Leistung auf die Probe: Dein rechter Sitznachbar soll dir ein deutsches Wort sagen, dessen französische Entsprechung du nennen musst. Weißt du die Antwort nicht, kommst du in den Trainingsraum. Ziehe dabei nicht über „Schulstart“ und ziehe kein Notengeld ein."
+        r_text[13] = "Im Wirtschafts-LK werden dir die Vorzüge von Crypto-Währung erklärt. Du investierst sofort einen Betrag deiner Wahl in Bitcoins. Werfe nun eine Münze, um die Rendite zu ermitteln. Die Bank kommt dafür auf. <br><br>Kopf: 50% Gewinn <br>Zahl: 50% Verlust"
+        r_text[14] = "Du hast Englisch-Basiskurs bei einem leicht reizbaren Englischlehrer. Wirf eine Münze, um herauszufinden, ob er einen guten oder schlechten Tag hat.<br><br>Kopf: guter Tag → er überweist dir von seinem Bankkonto 200DM <br>Zahl: schlechter Tag → du begibst dich sofort in den Trainingsraum, ziehe nicht über „Schulstart“ und ziehe kein Notengeld ein"
+        r_text[15] = "Dein galant gekleideter Bio-LK Lehrer niest dir ordentlich ins Gesicht. Du bekommst einen viralen Infekt und darfst vorzeitig nach Hause. Ziehe vor auf „Schulstart“ und ziehe Notengeld ein."
+        r_text[16] = "Dein mit freshen Sneakern bestückter Mathe-LK Lehrer hat sich ein ganz besonderes Ziel für den Wandertag ausgedacht: den Platz der Alten Synagoge. Eifrig wanderst du los und ziehst vor zum Platz der Alten Synagoge."
+        r_text[17] = "Dein Mathe Basiskurs Lehrer bietet dir mit unmerklich bayrischem Akzent an, deine Mathenote durch Armdrücken aufzupolieren. Du schlägst ihn und hast jetzt 12 Punkte in Mathe. Papi hat heute einen spendablen Tag und drückt dir 1000DM Notengeld in die Hand."
+        r_text[18] = "Um deine Kondition zu verbessern, trittst du dem „Droste Running Team“ bei. Ziehe vor bis zum „DHG Running Team“ und ziehe Notengeld ein, solltest du über „Schulstart“ kommen."
+        r_text[19] = "Der Feueralarm wird getestet. Alle Spieler sammeln sich am Sportplatz. Wer über „Schulstart“ zieht, erhält dabei Notengeld."
+        r_text[20] = "Ein stolz und aufrecht gehender Geschichtslehrer erwischt dich am Handy. Begib dich sofort in den Trainingsraum. Gehe direkt dort hin. Ziehe nicht über „Schulstart“, ziehe nicht 4000DM ein."
+        r_text[21] = "Ein lethargischer Physiklehrer bemerkt leider, dass du eine Fahne hast. Begib dich sofort in den Trainingsraum. Ziehe nicht über „Schulstart“. Ziehe nicht 4000DM ein."
+        r_text[22] = "Du entschließt dich, die nächsten 2 Schulstunden zu schwänzen. Ziehe drei Felder vor."
+        r_text[23] = "Du nimmst an der Anti-Stress-AG von zwei Damen – eine dem Blute nach Handwerkerin und eine adelig - teil. Jetzt hast du das richtige Mindset und würfelst gleich nochmal."
+        r_text[24] = "In Psychologie lernst du schwarze Rhetorik kennen. Sie wird dir beim nächsten Mal helfen, den Trainingsraum frühzeitig zu verlassen. Diese Fähigkeit kannst du allerdings nur einmal anwenden und lässt sich nicht verkaufen."
+        r_text[25] = "Du hast gehört, du könntest durch Bestechung dein Zeugnis aufbessern. Du zahlst daher 400DM an den Förderverein."
+        r_text[26] = "Ein Physiklehrer mit gewissen Ähnlichkeiten zu Walter White sammelt Geld ein für eine Exkursion zum Kernkraftwerk Neckarwestheim. Zahle 200DM."
+        r_text[27] = "Ein hipper Gemeinschaftskundelehrer bringt die Kaffeemaschine in den Unterricht mit. Du bist jetzt so wach und voller Energie, dass du gleich noch einmal würfelst."
+        r_text[28] = "Mist! Jemand hat die Bremsleitungen an deinem Fahrrad durchgeschnitten. Für die Reparatur zahlst du 600DM."
+        r_text[29] = "Du prallst beim Verlassen der Schule mit dem elegant anmutenden Bianchi Rennrad deiner linksalternativen Erdkundelehrerin zusammen. Für die Reparatur kommst du auf und zahlst 1200DM."
+
+
+        function setRandomText() {
+            var i = Math.floor(r_text.length * Math.random());
+            document.getElementById("RandomText").innerHTML = r_text[i];
+        };
+    </script>
+
+
+
+<div class="footer">
+    <p>Copyright &copy; Abizeitungsteam 2022 DHG</p>
+    </div>
+</body>
+<style>
+
+    body {
+        background-color: #222222;
+        font-family: 'Play', sans-serif;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    p{
+        color: white;
+        margin: 0;
+    }
+    li {
+        color: white;
+    }
+    h1{
+        color: white;
+    }
+    h3 {
+        color: white;
+    }
+    
+    a:hover {
+        color: orange;
+    }
+    
+    button {
+        height: 50px;
+        width: 250px;
+        background: rgba(0, 0, 0, 0.6);
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+        font-size: 20px;
+        font-family: 'Play', sans-serif;
+        border-style: ridge;
+        border-width: 0.7px;
+        border-color: #515151;
+        transition: 0.5s ease;
+    }
+    button:hover {
+        color: rgba(255, 255, 255, 1);
+        box-shadow: 0 5px 10px rgba(145, 92, 182, .4);
+        background-color: #ffffff;
+        color: #000000;
+        transition: 0.5s ease;
+    }
+    button:active {
+        background-color: orange;
+    }
+    
+    .topnav {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: #1f1f1f;
+        height: 50px;
+        text-align: center;
+        z-index: 1;
+    }
+    .topnavItem {
+        border: none;
+        width: 250px;
+        height: 35px;
+        font-size: 25px;
+        display: inline-block;
+        z-index: 1;
+    }
+    .contentwrapper {
+        position: relative;
+        text-align: center;
+        top: 50px;
+    }
+    .contentbox {
+        display: inline-block;
+        width: 350px;
+        height: 350px;
+        margin-top: 30px;
+        padding: 10px;
+    }
+    .questionmark {
+        display: block;
+        width: 350px;
+        height: auto;
+        font-size: 350px;
+        text-align: center;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        transition: .5s ease;
+        color:blue;
+    }
+    
+    .overlay {
+        position: relative;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5);
+        color: #f1f1f1;
+        width: 350px;
+        transition: .5s ease;
+        opacity: 1;
+        color: white;
+        font-size: 25px;
+        text-align: center;
+    }
+    .contentbox:hover .overlay {
+        width: 360px;
+        transition: .5s ease;
+    }
+    .contentbox:hover .questionmark {
+        width: 360px;
+        font-size: 360px;
+        -webkit-filter: grayscale(0);
+        filter: grayscale(0);
+        transition: .5s ease;
+    }
+    
+    .contentwrapper2 {
+        position: relative;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        top: 200px;
+        width: 80%;
+        margin: auto;
+        border-style: ridge;
+        border-width: 0.5px;
+        border-color: #1C1C1C;
+    }
+    
+    .contentbox2 {
+        display: inline-block;
+        width: 40%;
+        margin-top: 10px;
+        padding: 10px;
+        vertical-align: top;
+    }
+    
+    .footer {
+        position: relative;
+        margin: auto;
+        bottom: -450px;
+        width: 600px;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
+        border-style: ridge;
+        border-width: 0.5px;
+        border-color: #1C1C1C;
+    }
+    </style>
+</html>
